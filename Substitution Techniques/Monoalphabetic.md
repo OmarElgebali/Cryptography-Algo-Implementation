@@ -97,7 +97,7 @@ public string Analyse(string plainText, string cipherText)
     return newkey;
 }
 ```
-### 4. Naive Analysis
+### 4. Frequency Analysis
 ```csharp
 /// Frequency Information:
 /// E   12.51%
