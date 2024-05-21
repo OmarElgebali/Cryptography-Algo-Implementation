@@ -1,4 +1,4 @@
-# RSA (public-key encryption) Technique
+# RSA Technique
 
 ### Test Cases
 
