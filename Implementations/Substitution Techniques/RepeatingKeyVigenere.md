@@ -21,7 +21,6 @@ public string Encrypt(string plainText, string key)
     if (key.Length < plainText.Length)
     {
         newKey = string.Concat(Enumerable.Repeat(key, (plainText.Length - key.Length)));
-        //Console.WriteLine($"\nnew Key: {newKey}");
     }
 
     // Getting the plainText
@@ -36,14 +35,8 @@ public string Encrypt(string plainText, string key)
         pIndex = Array.IndexOf(vigenereArray, p);
         kIndex = Array.IndexOf(vigenereArray, k);
 
-        //Console.WriteLine($"{p} : {pIndex}");
-        //Console.WriteLine($"{k} : {kIndex}\n**************\n");
-
         cIndex = (pIndex + kIndex) % 26;
-        //Console.WriteLine(cIndex);
         cipherText += vigenereArray[cIndex];
-        //Console.WriteLine($"plainText: {cipherText}");
-
     }
     return cipherText;
 }
@@ -61,7 +54,6 @@ public string Decrypt(string cipherText, string key)
     if (key.Length < cipherText.Length)
     {
         newKey = string.Concat(Enumerable.Repeat(key, (cipherText.Length - key.Length)));
-        //Console.WriteLine($"\nnew Key: {newKey}");
     }
 
     // Getting the plainText
@@ -76,13 +68,8 @@ public string Decrypt(string cipherText, string key)
         cIndex = Array.IndexOf(vigenereArray, c);
         kIndex = Array.IndexOf(vigenereArray, k);
 
-        //Console.WriteLine($"{c} : {cIndex}");
-        //Console.WriteLine($"{k} : {kIndex}\n**************\n");
-
         pIndex = (cIndex - kIndex + 26) % 26;
-        //Console.WriteLine(pIndex);
         plainText += vigenereArray[pIndex];
-        //Console.WriteLine($"plainText: {plainText}");
 
     }
     return plainText;
@@ -108,13 +95,8 @@ public string Analyse(string plainText, string cipherText)
         pIndex = Array.IndexOf(vigenereArray, p);
         cIndex = Array.IndexOf(vigenereArray, c);
 
-        //Console.WriteLine($"{p} : {pIndex}");
-        //Console.WriteLine($"{c} : {cIndex}\n**************");
-
         kIndex = (cIndex - pIndex + 26) % 26;
-        //Console.WriteLine(kIndex);
         key += vigenereArray[kIndex];
-        //Console.WriteLine($"key: {key}\n");
 
     }
     string cleanKey = RemoveRepeatedLetters(key);

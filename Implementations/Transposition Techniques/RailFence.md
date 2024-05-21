@@ -34,7 +34,6 @@ public string Encrypt(string plainText, int key)
         {
             if (charCount < plainText.Length)
             {
-                //Console.WriteLine(charCount + " the current char is : " + plainText[charCount]);
                 ciphermap[r, c] = plainText[charCount];
                 charCount++;
 
@@ -49,20 +48,13 @@ public string Encrypt(string plainText, int key)
         for (int j = 0; j < columns; j++)
         {
             finalRes += ciphermap[i, j];
-            //Console.Write(ciphermap[i, j] + " ");
         }
-        //Console.WriteLine();
     }
-
-    /*if (!char.IsLetter(finalRes[finalRes.Length - 1]))
-    {
-        finalRes = finalRes.Substring(0, finalRes.Length - 1);
-    }*/
 
     finalRes=new string(finalRes.Where(char.IsLetter).ToArray());
 
     return finalRes.ToLower();
-    
+  
 }
 ```
 
@@ -100,12 +92,6 @@ ublic string Decrypt(string cipherText, int key)
             }
         }
     }
-
-    /*if (!char.IsLetter(res[res.Length - 1]))
-    {
-        res = res.Substring(0, res.Length - 1);
-    }*/
-
 
     res = new string(res.Where(char.IsLetter).ToArray());
     return res.ToLower();

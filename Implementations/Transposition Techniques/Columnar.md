@@ -35,33 +35,20 @@ public string Encrypt(string plainText, List<int> key)
     int remaining_letters = (number_of_columns - (number_of_original_letters % number_of_columns)) % number_of_columns;
     int number_of_letters = number_of_original_letters + remaining_letters;
     
-    //Console.WriteLine($"number_of_original_letters: {number_of_original_letters}");
-    //Console.WriteLine($"number_of_columns:          {number_of_columns}");
-    //Console.WriteLine($"remaining_letters:          {remaining_letters}");
-    //Console.WriteLine($"number_of_letters:          {number_of_letters}");
-
-    //Console.WriteLine(plainText);
     if (remaining_letters != 0)
     {
         plainText += new string('x', remaining_letters);
     }
-    //Console.WriteLine(plainText);
 
     for (int i = 0; i < number_of_columns; i++)
         for (int j = i; j < number_of_letters; j += number_of_columns)
             mat[i] += plainText[j];
-
-    //for (int i = 0; i < number_of_columns; i++)
-    //    Console.WriteLine($"{i}: {mat[i]} ");
 
     string cipher = "";
     for (int i = 1; i <= number_of_columns; i++)
     {
         cipher += mat[key.IndexOf(i)].ToUpper();
     }
-    //Console.WriteLine(cipher);
-    //Console.WriteLine(cipher.Length);
-
     return cipher;
 }
 ```
@@ -76,23 +63,9 @@ public string Decrypt(string cipherText, List<int> key)
     int number_of_letters = cipherText.Length;
     int number_of_rows = number_of_letters / number_of_columns;
 
-    //Console.WriteLine($"number_of_letters:  {number_of_letters}");
-    //Console.WriteLine($"number_of_columns:  {number_of_columns}");
-    //Console.WriteLine($"number_of_rows:     {number_of_rows}");
-
-    //Console.WriteLine(cipherText);
-
     for (int i = 0; i < number_of_columns; i++)
         for (int j = (i * number_of_rows); j < ((i * number_of_rows) + number_of_rows); j++)
             mat[i] += cipherText[j];
-
-    //for (int i = 0; i < number_of_columns; i++)
-    //    Console.Write($"{mat[i]} ");
-    //Console.WriteLine();
-
-    //for (int i = 0; i < number_of_columns; i++)
-    //    Console.WriteLine($"{i}: {mat[i]} ");
-    //Console.WriteLine();
 
     string[] indexedMat = new string[number_of_columns];
     int index = 0;
@@ -101,16 +74,10 @@ public string Decrypt(string cipherText, List<int> key)
         indexedMat[index++] += mat[i - 1].ToLower();
     }
 
-    //for (int i = 0; i < number_of_columns; i++)
-    //    Console.WriteLine($"{i}: {indexedMat[i]} ");
-
     string plainText = "";
     for (int i = 0; i < number_of_rows; i++)
         for (int j = 0; j < number_of_columns; j++)
             plainText += indexedMat[j][i];
-
-    //Console.WriteLine(plainText);
-    //Console.WriteLine(plainText.Length);
 
     return plainText;
 }
@@ -124,11 +91,8 @@ public List<int> Analyse(string plainText, string cipherText)
     List<int> key = new List<int>();
 
     string cipherTextLowered = cipherText.ToLower();
-    //Console.WriteLine($"plainText:  {plainText}");
-    //Console.WriteLine($"cipherText: {cipherTextLowered}");
 
     int number_of_letters = cipherTextLowered.Length;
-    //Console.WriteLine($"number_of_letters:  {number_of_letters}");
 
     List<int> possible_key_legnths = new List<int>();
     for (int i = 2; i < (number_of_letters / 2); i++)
@@ -156,32 +120,13 @@ public List<int> Analyse(string plainText, string cipherText)
         }
     }
 
-    //Console.Write($"1st Char ({cipherTextLowered[0]}) Indicies {possible_indices_of_first_char.Count}: ");
-    //foreach (int index in possible_indices_of_first_char)
-    //    Console.Write($"{index} ");
-    //Console.WriteLine();
-
-    //Console.Write($"2nd Char ({cipherTextLowered[1]}) Indicies {possible_indices_of_second_char.Count}: ");
-    //foreach (int index in possible_indices_of_second_char)
-    //    Console.Write($"{index} ");
-    //Console.WriteLine();
-
-    //Console.Write($"possible_key_legnths: ");
-    //foreach (int l in possible_key_legnths)
-    //    Console.Write($"{l} ");
-    //Console.WriteLine();
-
     int number_of_columns = -1;
     foreach (int second_index in possible_indices_of_second_char)
         foreach (var first_index in possible_indices_of_first_char)
             if (number_of_columns == -1 && possible_key_legnths.Contains(second_index - first_index))
                 number_of_columns = second_index - first_index;
 
-    //Console.WriteLine($"number_of_letters:  {number_of_letters}");
-    //Console.WriteLine($"number_of_columns:  {number_of_columns}");
-
     int number_of_rows = number_of_letters / number_of_columns;
-    //Console.WriteLine($"number_of_rows:     {number_of_rows}");
 
     if (number_of_columns == -1)
         return Enumerable.Repeat(default(int), number_of_letters).ToList();

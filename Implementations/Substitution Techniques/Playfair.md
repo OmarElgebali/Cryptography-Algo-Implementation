@@ -40,16 +40,6 @@ public string Playfair_Encrypt(string plainText, string key)
         current_indx++;
     }
   
-    // Display the Matrix
-    //for (int i = 0; i < 5; i++)
-    //{
-    //    for (int j = 0; j < 5; j++)
-    //    {
-    //        Console.Write($"{playfairMat[i, j]} ");
-    //    }
-    //    Console.WriteLine();
-    //}
-  
     // Check if any characters are repeated in the plainText.
     string newPlainText = plainText;
     for (int i = 0; i < newPlainText.Length - 1; i += 2)
@@ -61,7 +51,6 @@ public string Playfair_Encrypt(string plainText, string key)
     }
     if (newPlainText.Length % 2 != 0)
         newPlainText += "x";
-    //Console.WriteLine($"newPlainText: {newPlainText}");
   
     // convert the plainText into char array
     char[] twoChar = new char[newPlainText.Length];
@@ -72,11 +61,6 @@ public string Playfair_Encrypt(string plainText, string key)
         curr_idx++;
     }
   
-    //foreach (var c in twoChar)
-    //{
-    //    Console.Write($"{c} ");
-    //}
-    //Console.WriteLine();
   
     // get the index of each char of plainText in playfairMat and get the cipherText
     string cipherText = "";
@@ -84,36 +68,27 @@ public string Playfair_Encrypt(string plainText, string key)
     for (int i = 0; i < newPlainText.Length; i += 2)
     {
         row1 = GetRowIndex(twoChar[i]);
-        //Console.WriteLine($"Row1: {row1}, Char: {twoChar[i]}");
         col1 = GetColIndex(twoChar[i]);
-        //Console.WriteLine($"Col1: {col1}, Char: {twoChar[i]}");
   
         row2 = GetRowIndex(twoChar[i + 1]);
-        //Console.WriteLine($"Row2: {row2}, Char: {twoChar[i + 1]}");
         col2 = GetColIndex(twoChar[i + 1]);
-        //Console.WriteLine($"Col2: {col2}, Char: {twoChar[i + 1]}");
   
         if (row1 == row2)
         {
             cipherText += playfairMat[row1, (col1 + 1) % 5];
             cipherText += playfairMat[row1, (col2 + 1) % 5];
-            //Console.WriteLine($" First Case: {cipherText}");
         }
         else if (col1 == col2)
         {
             cipherText += playfairMat[(row1 + 1) % 5, col1];
             cipherText += playfairMat[(row2 + 1) % 5, col1];
-            //Console.WriteLine($" Second Case: {cipherText}");
         }
         else
         {
             cipherText += playfairMat[row1, col2];
             cipherText += playfairMat[row2, col1];
-            //Console.WriteLine($" Last Case: {cipherText}");
         }
     }
-    //Console.WriteLine('\n');
-    //Console.WriteLine($"CipherText: {cipherText}");
   
     return cipherText.ToUpper();
   
@@ -187,17 +162,7 @@ public string Playfair_Decrypt(string cipherText, string key)
         current_index++;
     }
   
-    //for (int i = 0; i < 5; i++)
-    //{
-    //    for (int j = 0; j < 5; j++)
-    //    {
-    //        Console.Write($"{playfairMat[i, j]} ");
-    //    }
-    //    Console.WriteLine();
-    //}
-  
     string cipherTemp = cipherText.ToLower();
-    //Console.WriteLine(cipherTemp);
   
     int char_index = 0;
     while (char_index < cipherTemp.Length)
@@ -214,24 +179,18 @@ public string Playfair_Decrypt(string cipherText, string key)
                 string part2 = cipherTemp.Substring(char_index + 1);
                 cipherTemp = part1 + "x" + part2;
             }
-            //Console.WriteLine($"(i:{char_index},{char_index+1}) -> (v:{cipherTemp[char_index]}{cipherTemp[char_index+1]})");
         }
     }
-    //Console.WriteLine(cipherTemp);
   
     char_index = 0;
-    //Console.WriteLine(cipherTemp.ToUpper());
     while (char_index < cipherTemp.Length)
     {
         for (; char_index < cipherTemp.Length; char_index += 2)
         {
-            //Console.WriteLine($"(i:{char_index},{char_index + 1}) -> (v:{cipherTemp[char_index]}{cipherTemp[char_index + 1]})");
             int index_1 = mat.IndexOf(cipherTemp[char_index]);
             int index_2 = mat.IndexOf(cipherTemp[char_index + 1]);
             int index_1_row = (index_1 / 5) % 5, index_1_col = index_1 % 5;
             int index_2_row = (index_2 / 5) % 5, index_2_col = index_2 % 5;
-            //Console.WriteLine($"[{index_1_row},{index_1_col}] = {playfairMat[index_1_row, index_1_col]}");
-            //Console.WriteLine($"[{index_2_row},{index_2_col}] = {playfairMat[index_2_row, index_2_col]}");
             if (index_1_row == index_2_row)
             {
                 index_1_col = (index_1_col - 1) % 5 < 0 ? 4 : (index_1_col - 1) % 5;
@@ -248,15 +207,9 @@ public string Playfair_Decrypt(string cipherText, string key)
                 index_1_col = index_2_col;
                 index_2_col = temp_col;
             }
-            //Console.Write($"[{index_1_row},{index_1_col}] = ");
-            //Console.WriteLine($"{playfairMat[index_1_row, index_1_col]}");
-            //Console.Write($"[{index_2_row},{index_2_col}] = ");
-            //Console.WriteLine($"{playfairMat[index_2_row, index_2_col]}");
             plainText += $"{playfairMat[index_1_row, index_1_col]}{playfairMat[index_2_row, index_2_col]}";
         }
     }
-    //Console.WriteLine(plainText);
-  
   
     plainText = plainText[plainText.Length - 1] == 'x' ? plainText.Substring(0, plainText.Length - 1) : plainText;
   
@@ -274,11 +227,6 @@ public string Playfair_Decrypt(string cipherText, string key)
             char_index--;
         }
     }
-  
-    //Console.WriteLine(plainText);
-    //Console.WriteLine(mat);
-    //Console.WriteLine(mat.Length);
-    //Console.WriteLine("*********************************************************************");
   
     return plainText;
 }
