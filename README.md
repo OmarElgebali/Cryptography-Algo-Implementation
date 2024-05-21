@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project contains implementations of various classical and modern cryptographic algorithms. Each algorithm is implemented with functions for encryption, decryption, and analysis if applicable. Test cases are also provided for each implementation to ensure correctness.
+This project contains implementations of various classical and modern cryptographic algorithms. Each algorithm is implemented with functions for `encryption`, `decryption`, and `analysis` *if applicable*. `Test cases` are also provided for each implementation to ensure correctness.
 
 ## Algorithms Implemented
 
