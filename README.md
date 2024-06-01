@@ -38,11 +38,11 @@ In this cipher, the plaintext is written out in rows of a fixed length, and then
 
 The Rail Fence cipher is a transposition cipher that writes the plaintext in a zigzag pattern along multiple "rails" and then reads off each rail to get the ciphertext.
 
-#### *~~9. **Advanced Encryption Standard (AES)**:~~*
+#### *9. **Advanced Encryption Standard (AES)**:*
 
 AES is a symmetric encryption algorithm that uses fixed block sizes (128 bits) and key sizes of 128, 192, or 256 bits. It operates on a 4x4 column-major order matrix of bytes with a series of linked operations involving substitution, transposition, and mixing.
 
-#### *~~10. **Data Encryption Standard (DES)**:~~*
+#### *10. **Data Encryption Standard (DES)**:*
 
 DES is a symmetric-key algorithm for the encryption of digital data. It uses a 56-bit key and operates on 64-bit blocks. The algorithm involves 16 rounds of permutation and substitution based on the key.
 
