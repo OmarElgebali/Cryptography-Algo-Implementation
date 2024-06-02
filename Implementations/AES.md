@@ -20,7 +20,7 @@ string mainCipher4 = "0x29C3505F571420F6402299B31A02D73A";
 string mainKey4 = "0x5468617473206D79204B756E67204675";
 ```
 
-### 1. Encode Mapping (Hexa <-> Digit)
+### 1. Encode Mapping (Hexa ↔ Digit)
 
 ```csharp
 static Dictionary<char, string> encode_mapping = new Dictionary<char, string>();
