@@ -18,7 +18,7 @@ string mainKey3 = "0x38627974656B6579";
 
 ```
 
-### 1. Encode Mapping (Hexa <-> Digit)
+### 1. Encode Mapping (Hexa ↔ Digit)
 
 ```csharp
 static Dictionary<char, string> encode_mapping = new Dictionary<char, string>();
