@@ -3,18 +3,20 @@
 ### Test Cases
 
 ```csharp
-List<long> cipher = Encrypt(7187, 4842, 4464, 19, 19);//191
+List<long> cipher;
+cipher = Encrypt(7187, 4842, 4464, 19, 19);//191
 Assert.AreEqual(cipher[0], 2781);
 Assert.AreEqual(cipher[1], 437);
 
-List<long> cipher = Encrypt(6323, 4736, 2231, 58, 111);//118
+cipher = Encrypt(6323, 4736, 2231, 58, 111);//118
 Assert.AreEqual(cipher[0], 6066);
 Assert.AreEqual(cipher[1], 899);
 
-int plain = algorithm.Decrypt(2781, 437, 191, 7187);
+int plain;
+plain = algorithm.Decrypt(2781, 437, 191, 7187);
 Assert.AreEqual(plain, 19);
 
-int plain = algorithm.Decrypt(6066, 899, 118, 6323);
+plain = algorithm.Decrypt(6066, 899, 118, 6323);
 Assert.AreEqual(plain, 111);
 ```
 
