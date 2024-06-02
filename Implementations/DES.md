@@ -3,7 +3,6 @@
 ### Test Cases
 
 ```csharp
-// Test 1
 string mainPlain = "0x0123456789ABCDEF";
 string mainCipher = "0x85E813540F0AB405";
 string mainKey = "0x133457799BBCDFF1";
