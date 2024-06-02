@@ -123,7 +123,7 @@ public static string IntegerToBinary_4bits(int number)
 {
     string binaryString = Convert.ToString(number, 2);
     int len = binaryString.Length;
-    int desiredLen = 4 - len; // must be 0 to ensure that all numbers in 4-bits
+    int desiredLen = 4 - len; 
     if (desiredLen > 0)
     {
         for (int i = 0; i < desiredLen; i++)
