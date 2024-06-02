@@ -3,28 +3,29 @@
 ### Test Cases
 
 ```csharp
-int cipher = Encrypt(11, 17, 88, 7);
+int cipher, plain;
+cipher = Encrypt(11, 17, 88, 7);
 Assert.AreEqual(cipher, 11);
 
-int plain = Decrypt(11, 17, 11, 7);
+plain = Decrypt(11, 17, 11, 7);
 Assert.AreEqual(plain, 88);
 
-int cipher = Encrypt(13, 19, 65, 5);
+cipher = Encrypt(13, 19, 65, 5);
 Assert.AreEqual(cipher, 221);
 
-int plain = Decrypt(13, 19, 221, 5);
+plain = Decrypt(13, 19, 221, 5);
 Assert.AreEqual(plain, 65);
 
-int cipher = Encrypt(61, 53, 70, 7);
+cipher = Encrypt(61, 53, 70, 7);
 Assert.AreEqual(cipher, 2338);
 
-int plain = Decrypt(61, 53, 2338, 7);
+plain = Decrypt(61, 53, 2338, 7);
 Assert.AreEqual(plain, 70);
 
-int cipher = Encrypt(257, 337, 18537, 17);
+cipher = Encrypt(257, 337, 18537, 17);
 Assert.AreEqual(cipher, 12448);
 
-int plain = Decrypt(257, 337, 12448, 17);
+plain = Decrypt(257, 337, 12448, 17);
 Assert.AreEqual(plain, 18537);
 ```
 
